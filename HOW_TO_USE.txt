@@ -1,0 +1,51 @@
+HOW TO USE: projected-singing-speech
+====================================
+
+PURPOSE
+  Model the acoustic, aerodynamic, and resonant transformations between conversational speech,
+  projected public oratory, and singing/chanting (vibrato, singer's formant cluster, subglottal pressure).
+
+CAPABILITIES
+  - Model 3 operational modes: Conversational (65 dBA) vs Projected Oratory (82 dBA) vs Singing (88+ dBA)
+  - Quantify subglottal pressure scaling (Psub: 6.5 -> 18.0 -> 24.0+ cm H2O) and closed quotient rise
+  - Measure Speaker's/Singer's Formant Cluster boost (+6 to +12 dB in 2.8-3.5 kHz range)
+  - Detail pitch vibrato mechanics: rate (Hz), excursion depth (semitones), and onset latency (ms)
+  - Model vowel modification (passaggio covering) adjustments at high pitch thresholds
+  - Output machine-readable projection_singing_profile.json
+
+USE CASES
+  - "How does this politician's voice change when shouting in an arena vs talking in a podcast?"
+  - You want to synthesize a singing voice or rhythmic chant from a speaking voice profile
+  - You need to model the epilaryngeal resonance peak that lets a voice cut through background noise
+  - Calculating subglottal pressure and aerodynamic loading for vocal health simulations
+
+IDEAS
+  - Pair with affect-register-atlas when modeling high-energy rally speeches
+  - Inject the 2.8-3.5 kHz formant boost into KlattGrid in synthesis-control-compiler
+  - Enable vibrato LFO only during sustained singing notes
+
+PROMPTS YOU CAN PASTE
+  /projected-singing-speech Queens-male-orator
+
+  projected vs speech for Steve Jobs
+
+  singing voice profile of this actor
+
+  model vocal projection for arena rally speech. Detail Speaker's Formant Cluster and Psub.
+
+  What acoustic shifts occur when this speaker transitions from conversational speaking to singing?
+
+EXAMPLE FLOW
+  You:   /projected-singing-speech Queens-male-orator
+  Model: 1. Operational Modes:
+         - Conversational: 66 dBA, Psub 6.5 cm H2O, CQ 0.52
+         - Projected Oratory: 82.5 dBA, Psub 18 cm H2O, CQ 0.68, Speaker's Formant +7.8 dB
+         - Singing: 88 dBA, Psub 24 cm H2O, Vibrato 5.4 Hz (extent 0.65 st)
+         2. Passaggio Break Points: Primo: 196 Hz, Secondo: 294 Hz
+         [projection_singing_profile.json]
+
+DEFAULT GOALS IF YOU DON'T NAME ONE
+  1. Three-tier operational mode contrast (conversational, projected, singing)
+  2. Subglottal pressure (Psub) and closed quotient scaling
+  3. Speaker's/Singer's Formant Cluster gain (2.8-3.5 kHz)
+  4. Machine-readable projection_singing_profile.json block
